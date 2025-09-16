@@ -8,3 +8,5 @@
 - ⏳ Phase 4: React Frontend UI (Coming Soon)
 - ⏳ Phase 5: AI Fitness Insights (Coming Soon)
 - ⏳ Phase 6: AWS Deployment (Coming Soon)
+
+🧭 Integrated **Eureka Server & Client** for service discovery, enabling dynamic communication between microservices without hardcoding URLs.
