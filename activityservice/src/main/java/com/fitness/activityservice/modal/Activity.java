@@ -1,5 +1,7 @@
 package com.fitness.activityservice.modal;
 
+import jakarta.validation.constraints.NotBlank;
+import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -24,8 +26,13 @@ public class Activity {
 
     @Id
     private String id;
+
+    @NotBlank
     private String userId;
+
+    @NotNull
     private ActivityType type;
+
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;
