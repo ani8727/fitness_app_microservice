@@ -1,40 +1,5 @@
-server:
-  port: 8081
-
 spring:
   application:
     name: user-service
-
-  datasource:
-    url: jdbc:mysql://localhost:3306/fitness_user_db
-    username: root
-    password: "@ani.8727M"
-    driver-class-name: com.mysql.cj.jdbc.Driver
-
-  jpa:
-    hibernate:
-      ddl-auto: update           # Good for dev, but consider 'validate' or migrations (Flyway/Liquibase) for production
-    database-platform: org.hibernate.dialect.MySQL8Dialect
-    show-sql: true
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-
-  instance:
-    prefer-ip-address: true       # ✅ Registers with IP, avoids NXDOMAIN
-    instance-id: ${spring.application.name}:${server.port}:${random.value}
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info      # ✅ Expose health endpoint for Eureka
-  health:
-    db:
-      enabled: true               # ✅ Include DB health in actuator
+  config:
+    import: optional:configserver:http://localhost:8888

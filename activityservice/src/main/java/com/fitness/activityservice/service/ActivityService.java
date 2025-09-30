@@ -49,10 +49,10 @@ public class ActivityService {
 
         //publish to RabbitMQ for AI Processing
         try {
-             rabbitTemplate.convertAndSend(exchange , routingKey);
-
+            rabbitTemplate.convertAndSend(exchange, routingKey, savedActivity);
+            log.info("Message published to RabbitMQ: {}", savedActivity);
         } catch (Exception e) {
-            log.error("Failed to publish activity to RabbitMq: ", e);
+            log.error("Failed to publish activity to RabbitMQ: ", e);
         }
 
         return mapToResponse(savedActivity);

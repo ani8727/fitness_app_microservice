@@ -1,54 +1,5 @@
-server:
-  port: 8083
-
 spring:
   application:
     name: ai-service
-
-  data:
-    mongodb:
-      uri: mongodb://localhost:27017/fitnessrecommendation
-      database: fitnessrecommendation
-
-  rabbitmq:
-    host: localhost
-    port: 5672
-    username: ani
-    password: mypassword
-
-eureka:
-  client:
-    service-url:
-      defaultZone: http://localhost:8761/eureka/
-    register-with-eureka: true
-    fetch-registry: true
-
-  instance:
-    prefer-ip-address: true
-    instance-id: ${spring.application.name}:${server.port}:${random.value}
-    lease-renewal-interval-in-seconds: 30
-    lease-expiration-duration-in-seconds: 90
-
-rabbitmq:
-  exchange:
-    name: fitness.exchange
-  queue:
-    name: activity.queue
-  routing:
-    key: activity.tracking
-
-management:
-  endpoints:
-    web:
-      exposure:
-        include: health,info
-  health:
-    db:
-      enabled: false   # Disable JDBC check (no SQL DB here)
-    mongo:
-      enabled: true    # Enable MongoDB health check
-
-logging:
-  level:
-    com.netflix.discovery: DEBUG
-    org.springframework.cloud: DEBUG
+  config:
+    import: optional:configserver:http://localhost:8888
