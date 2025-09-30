@@ -18,6 +18,10 @@ eureka:
   client:
     service-url:
       defaultZone: http://localhost:8761/eureka/
+  instance:
+    hostname: localhost      # Register services with localhost
+    prefer-ip-address: true  # Optional: register with IP instead of hostname
+
 
 rabbitmq:
   exchange:
