@@ -1,7 +1,5 @@
 package com.fitness.activityservice.modal;
 
-import jakarta.validation.constraints.NotBlank;
-import jakarta.validation.constraints.NotNull;
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
@@ -12,7 +10,6 @@ import org.springframework.data.annotation.LastModifiedDate;
 import org.springframework.data.mongodb.core.mapping.Document;
 import org.springframework.data.mongodb.core.mapping.Field;
 
-import java.time.LocalDate;
 import java.time.LocalDateTime;
 import java.util.Map;
 
@@ -26,13 +23,8 @@ public class Activity {
 
     @Id
     private String id;
-
-    @NotBlank
     private String userId;
-
-    @NotNull
     private ActivityType type;
-
     private Integer duration;
     private Integer caloriesBurned;
     private LocalDateTime startTime;

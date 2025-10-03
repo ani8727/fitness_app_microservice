@@ -17,17 +17,19 @@ public class User {
     @GeneratedValue(strategy = GenerationType.UUID)
     private String id;
 
+    private String firstName;
+    private String lastName;
+
     @Column(unique = true, nullable = false)
     private String email;
 
-    @Column(nullable = false)
-    private String password;
-
-    private String firstname;
-    private String lastname;
-
     @Enumerated(EnumType.STRING)
     private UserRole role = UserRole.USER;
+
+    private String keycloakId;
+
+    @Column(nullable = false)
+    private String password;
 
     @CreationTimestamp
     private LocalDateTime createAt;

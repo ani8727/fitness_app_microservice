@@ -4,7 +4,6 @@ import com.fitness.activityservice.ActivityRepository;
 import com.fitness.activityservice.dto.ActivityRequest;
 import com.fitness.activityservice.dto.ActivityResponse;
 import com.fitness.activityservice.modal.Activity;
-import lombok.AllArgsConstructor;
 import lombok.RequiredArgsConstructor;
 import lombok.extern.slf4j.Slf4j;
 import org.springframework.amqp.rabbit.core.RabbitTemplate;

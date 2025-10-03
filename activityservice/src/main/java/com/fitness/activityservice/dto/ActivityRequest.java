@@ -15,5 +15,4 @@ public class ActivityRequest {
     private LocalDateTime startTime;
     private Map<String, Object> additionalMetrics;
 
-
 }

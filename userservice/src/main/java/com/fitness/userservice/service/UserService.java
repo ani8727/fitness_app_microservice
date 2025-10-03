@@ -18,25 +18,36 @@ public class UserService {
     public UserResponse register(RegisterRequest request) {
 
         if(repository.existsByEmail(request.getEmail())){
-            throw new RuntimeException("Email already exist");
+            User existingUser = repository.findByEmail(request.getEmail());
+            UserResponse userResponse = new UserResponse();
+            userResponse.setId(existingUser.getId());
+            userResponse.setKeycloakId(existingUser.getKeycloakId());
+            userResponse.setPassword(existingUser.getPassword());
+            userResponse.setEmail(existingUser.getEmail());
+            userResponse.setFirstName(existingUser.getFirstName());
+            userResponse.setLastName(existingUser.getLastName());
+            userResponse.setCreateAt(existingUser.getCreateAt());
+            userResponse.setUpdateAt(existingUser.getUpdateAt());
+
+            return userResponse;
         }
 
         User user = new User();
 
         user.setEmail(request.getEmail());
         user.setPassword(request.getPassword());
-        user.setFirstname(request.getFirstname());
-        user.setLastname(request.getLastname());
+        user.setKeycloakId(request.getKeycloakId());
+        user.setFirstName(request.getFirstName());
+        user.setLastName(request.getLastName());
 
         User savedUser = repository.save(user);
-
         UserResponse userResponse = new UserResponse();
-
+        userResponse.setKeycloakId(savedUser.getKeycloakId());
         userResponse.setId(savedUser.getId());
         userResponse.setPassword(savedUser.getPassword());
         userResponse.setEmail(savedUser.getEmail());
-        userResponse.setFirstname(savedUser.getFirstname());
-        userResponse.setLastname(savedUser.getLastname());
+        userResponse.setFirstName(savedUser.getFirstName());
+        userResponse.setLastName(savedUser.getLastName());
         userResponse.setCreateAt(savedUser.getCreateAt());
         userResponse.setUpdateAt(savedUser.getUpdateAt());
 
@@ -44,7 +55,7 @@ public class UserService {
 
     }
 
-    public UserResponse getuserProfile(String userId) {
+    public UserResponse getUserProfile(String userId) {
         User user = repository.findById(userId)
                 .orElseThrow(() -> new RuntimeException("User not found"));
 
@@ -54,8 +65,8 @@ public class UserService {
         userResponse.setId(user.getId());
         userResponse.setPassword(user.getPassword());
         userResponse.setEmail(user.getEmail());
-        userResponse.setFirstname(user.getFirstname());
-        userResponse.setLastname(user.getLastname());
+        userResponse.setFirstName(user.getFirstName());
+        userResponse.setLastName(user.getLastName());
         userResponse.setCreateAt(user.getCreateAt());
         userResponse.setUpdateAt(user.getUpdateAt());
 
@@ -64,6 +75,6 @@ public class UserService {
 
     public Boolean existByUserId(String userId) {
         log.info("Calling User Validation API for userId: {}", userId);
-        return repository.existsById(userId);
+        return repository.existsByKeycloakId(userId);
     }
 }

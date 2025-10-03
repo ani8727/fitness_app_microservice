@@ -3,3 +3,7 @@ spring:
     name: ai-service
   config:
     import: optional:configserver:http://localhost:8888
+
+
+# GEMINI_API_URL=https://generativelanguage.googleapis.com/v1beta/models/gemini-2.5-flash:generateContent?key=;
+#  GEMINI_API_KEY=AIzaSyBeZbCLJb7CtKfnW1DznLweoI-56Fe7C_s;
